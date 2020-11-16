@@ -1,0 +1,188 @@
+.root {
+    -fx-background-color: #3C3F41;
+}
+
+.tree-view {
+	-fx-background-color: #303234;
+}
+
+.tree-cell {
+	-fx-background-color: #303234;
+	-fx-text-fill: #999C9A;
+}
+
+.tree-cell:hover {
+	-fx-background-color: transparent;
+	-fx-text-fill: #D5D7D9;
+	-fx-cursor: hand;
+}
+
+.scroll-pane {
+	-fx-background-color: #3C3F41;
+}
+
+.scroll-pane > .viewport{
+	-fx-background-color: #3C3F41;
+}
+
+.scroll-pane > .corner {
+	-fx-background-color: #3C3F41;
+}
+
+.scroll-bar {
+	-fx-background-color: #3C3F41;
+}
+
+.scroll-bar .track {
+	-fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+	-fx-background-color: #4A7894;
+	-fx-background-radius: 50;
+	-fx-background-insets: 4, 0, 0;
+	-fx-padding: 2;
+}
+
+.scroll-bar .thumb:hover {
+	-fx-background-insets: 3, 0, 0;
+}
+
+.scroll-bar .increment-button {
+	-fx-background-color: transparent;
+}
+
+.menu-bar { -fx-background-color: #2D2F31; }
+
+.menu {
+	-fx-background-color: transparent;
+	-fx-border-color: gray;
+	-fx-border-width: 0.0 0.0 1.0 0.0;
+}
+
+.menu:hover {
+	-fx-background-color: #303234;
+	-fx-border-color: #4A7894;
+	-fx-cursor: hand;
+}
+
+.menu:showing {
+	-fx-border-color: #4A7894; 
+}
+.menu .label { 
+	-fx-text-fill: gray; 
+}
+.menu:hover .label {
+	-fx-text-fill: #BACCC7; 
+	}
+.menu:showing .label {
+	-fx-text-fill:  #BACCC7; 
+	}
+
+.context-menu { 
+	-fx-background-color: #323334; 
+}
+
+.menu-item {
+	-fx-background-color: transparent;
+	-fx-cursor: hand;
+}
+
+.menu-item:hover { 
+	-fx-background-color: #494C4F; 
+}
+
+.titled-pane .title {
+	-fx-background-color: #424446;
+}
+
+.titled-pane .tile:hover {
+	-fx-background-color: #626568;
+}
+
+.titled-pane .content {
+	-fx-border-color: #56585A;
+	-fx-background-color: #56585A;
+}
+
+.title .arrow {
+	-fx-background-color: gray;
+}
+
+.title .arrow {
+	-fx-focus-color: transparent;
+}
+
+.separator *.line { 
+	-fx-border-style: solid;
+	-fx-border-width: 1 0 0 0;
+	-fx-border-color: gray;
+}
+
+#titledPaneHeader {
+	-fx-text-fill: #9DA0A3;
+}
+
+#titledPaneHeader:hover {
+	-fx-text-fill: #E0E4E7;
+}
+
+#titledPaneHeader:focused {
+	-fx-text-fill: #E0E4E7;
+}
+
+#itemLow {
+	-fx-text-fill: #9DA0A3;
+	-fx-border-color: #8F9CFF;
+	-fx-border-width: 0 0 1 0;
+}
+#itemLow:hover {
+	-fx-text-fill: #E0E4E7;
+}
+#itemLow:expanded {
+	-fx-text-fill: #E0E4E7;
+	-fx-border-width: 0 1 1 1;
+}
+
+#itemMedium {
+	-fx-text-fill: #9DA0A3;
+	-fx-border-color: #75EF7B;
+	-fx-border-width: 0 0 1 0;
+}
+#itemMedium:hover {
+	-fx-text-fill: #E0E4E7;
+}
+#itemMedium:expanded {
+	-fx-text-fill: #E0E4E7;
+	-fx-border-width: 0 1 1 1;
+}
+
+#itemHigh {
+	-fx-text-fill: #9DA0A3;
+	-fx-border-color: #F0E600;
+	-fx-border-width: 0 0 1 0;
+}
+#itemHigh:hover {
+	-fx-text-fill: #E0E4E7;
+}
+#itemHigh:expanded {
+	-fx-text-fill: #E0E4E7;
+	-fx-border-width: 0 1 1 1;
+}
+
+#itemCrit {
+	-fx-text-fill: #9DA0A3;
+	-fx-border-color: #C13200;
+	-fx-border-width: 0 0 1 0;
+}
+#itemCrit:hover {
+	-fx-text-fill: #E0E4E7;
+}
+#itemCrit:expanded {
+	-fx-text-fill: #E0E4E7;
+	-fx-border-width: 0 1 1 1;
+}
+
+#text {
+	-fx-text-fill: #E3EFFF;
+}

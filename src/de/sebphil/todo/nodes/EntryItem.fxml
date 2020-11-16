@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<TitledPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../style/DarkStyle.css" text="Title" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.sebphil.todo.controller.EntryItemController">
+   <content>
+      <AnchorPane>
+         <children>
+            <Label id="text" fx:id="messageLab" layoutX="24.0" layoutY="34.0" text="message:" AnchorPane.leftAnchor="2.0" AnchorPane.topAnchor="0.0" />
+            <Label id="text" fx:id="messageText" alignment="TOP_LEFT" layoutX="90.6" layoutY="19.6" text="hallo!" textAlignment="JUSTIFY" AnchorPane.bottomAnchor="120.0" AnchorPane.leftAnchor="72.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Separator layoutX="14.0" layoutY="43.0" prefHeight="16.0" prefWidth="557.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label id="text" layoutX="12.0" layoutY="49.0" text="file:" AnchorPane.bottomAnchor="80.0" />
+            <Label id="text" fx:id="fileText" layoutX="82.0" layoutY="49.0" onMouseClicked="#openFilePath" prefHeight="17.0" prefWidth="496.0" text="&lt;filepath&gt;" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="71.0" AnchorPane.rightAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Label>
+            <Label id="text" layoutX="12.0" layoutY="66.0" text="line:" AnchorPane.bottomAnchor="60.0" />
+            <Label id="text" fx:id="lineText" layoutX="82.0" layoutY="66.0" prefHeight="17.0" prefWidth="490.0" text="&lt;line&gt;" AnchorPane.bottomAnchor="60.0" />
+            <Separator layoutX="22.0" layoutY="88.0" prefHeight="16.0" prefWidth="557.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Label id="text" layoutX="10.0" layoutY="104.0" text="date:" AnchorPane.bottomAnchor="20.0" />
+            <Label id="text" fx:id="dateText" layoutX="82.0" layoutY="104.0" prefHeight="17.0" prefWidth="492.0" text="&lt;date&gt;" AnchorPane.bottomAnchor="20.0" />
+            <Label id="text" layoutX="10.0" layoutY="121.0" text="priority:" AnchorPane.bottomAnchor="0.0" />
+            <Label fx:id="priorityText" layoutX="82.0" layoutY="121.0" text="&lt;pri&gt;" AnchorPane.bottomAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </content>
+</TitledPane>

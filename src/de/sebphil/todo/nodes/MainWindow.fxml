@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="658.0" prefWidth="760.0" stylesheets="@../style/DarkStyle.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.sebphil.todo.controller.MainController">
+   <center>
+      <AnchorPane prefHeight="622.0" prefWidth="760.0">
+         <children>
+            <ScrollPane fx:id="scrollPane" prefHeight="632.0" prefWidth="760.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets top="3.0" />
+               </padding>
+               <content>
+                  <VBox fx:id="contentBox" prefHeight="60.0" prefWidth="72.0" />
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#browseFile" text="browse file" />
+                  <MenuItem mnemonicParsing="false" onAction="#browseDirectory" text="browse directory" />
+                  <MenuItem mnemonicParsing="false" onAction="#refreshItems" text="refresh" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
