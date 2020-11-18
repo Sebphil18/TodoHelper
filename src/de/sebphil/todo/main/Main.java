@@ -1,7 +1,5 @@
-package de.sebphil.todo.test;
+package de.sebphil.todo.main;
 
-import de.sebphil.todo.entry.TodoParser;
-import de.sebphil.todo.io.FileExplorer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

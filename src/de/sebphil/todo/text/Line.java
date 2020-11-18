@@ -3,30 +3,31 @@ package de.sebphil.todo.text;
 public class Line {
 
     private final String text;
-    private final boolean containsTodo ;
-    private final boolean isSectionStart;
-    private final boolean isSectionEnd;
-    private final boolean isComment;
+    private boolean containsTodo ;
+    private boolean isSectionStart;
+    private boolean isSectionEnd;
+    private boolean isComment;
     private final long lineNum;
 
     public Line(String text) {
-        String upperLine = text.toUpperCase();
+        this.lineNum = 0;
         this.text = text;
-        containsTodo = upperLine.contains("TODO");
-        isSectionStart = upperLine.contains("/*");
-        isSectionEnd = upperLine.contains("*/");
-        isComment = upperLine.contains("//");
-        lineNum = 0;
+        String upperText = text.toUpperCase();
+        analyzeStr(upperText);
     }
 
     public Line(String text, long lineNum) {
-        String upperLine = text.toUpperCase();
-        this.text = text;
-        containsTodo = upperLine.contains("TODO");
-        isSectionStart = upperLine.contains("/*");
-        isSectionEnd = upperLine.contains("*/");
-        isComment = upperLine.contains("//");
         this.lineNum = lineNum;
+        this.text = text;
+        String upperText = text.toUpperCase();
+        analyzeStr(upperText);
+    }
+
+    private void analyzeStr(String upperText) {
+        containsTodo = upperText.contains("TODO");
+        isSectionStart = upperText.contains("/*");
+        isSectionEnd = upperText.contains("*/");
+        isComment = upperText.contains("//");
     }
 
     public boolean isSectionStart(){

@@ -22,8 +22,11 @@ public class CommentSection {
         return builder.toString();
     }
 
-    public void addLine(String line) {
-        lines.add(line);
+    public void addLine(Line line) {
+        lines.add(line.getText());
+
+        if(!containsTodo && line.containsTodo())
+            containsTodo = true;
         if(!open)
             open = true;
     }
@@ -36,10 +39,6 @@ public class CommentSection {
 
     public boolean isOpen() {
         return open;
-    }
-
-    public void setContainsTodo(boolean b) {
-        containsTodo = b;
     }
 
     public boolean containsTodo() {

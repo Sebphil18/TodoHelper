@@ -1,5 +1,6 @@
 package de.sebphil.todo.entry;
 
+import de.sebphil.todo.io.BufferedFileReader;
 import de.sebphil.todo.text.CommentSection;
 import de.sebphil.todo.text.Line;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class TodoParser {
 
     private final List<TodoEntry> entries;
-    private static long totalLines;
+    private long totalLines;
 
     public TodoParser() {
         entries = new ArrayList<>();
@@ -26,62 +27,42 @@ public class TodoParser {
         System.out.println("processed " + totalLines + " lines");
     }
 
-    // TODO [2020-11-16](low): move file-reading into separate class!
     private void parseFile(File file) {
-        try {
-            FileReader fileReader = new FileReader(file);
-            BufferedReader buffReader = new BufferedReader(fileReader);
-            readFile(file, buffReader);
-            buffReader.close();
-            fileReader.close();
-        } catch (IOException e) {
-            System.err.print("Could not parse file " + file.getAbsolutePath() + "! ");
-            System.err.println("(The file may not exist or the user does not have access permissions)");
-            e.printStackTrace();
-        }
+        BufferedFileReader fileReader = new BufferedFileReader(file);
+        readFile(fileReader);
+        fileReader.close();
     }
 
-    private void readFile(File file, BufferedReader reader) throws IOException {
-        System.out.println("Processing file: " + file.getPath());
-
+    private void readFile(BufferedFileReader fileReader) {
         String text;
-        long lineNum = 0;
-
         CommentSection section = new CommentSection();
 
-        while((text = reader.readLine()) != null) {
-            lineNum++;
-            totalLines++;
-            Line line = new Line(text, lineNum);
-            parseLine(line, section, file);
+        while((text = fileReader.nextLine()) != null) {
+            Line line = new Line(text, fileReader.getLineNum());
+            parseLine(line, section, fileReader.getFilePath());
         }
+        totalLines += fileReader.getLineNum() - 1;
     }
 
-    private void parseLine(Line line, CommentSection section, File file) {
+    private void parseLine(Line line, CommentSection section, String filePath) {
         if(line.isSectionEnd()) {
-            closeSection(section, file, line.getLineNum());
+            closeSection(section, filePath, line.getLineNum());
         } else if(line.isSectionStart() || section.isOpen()) {
-            addToSection(line.getText(), line, section);
+            section.addLine(line);
         } else if(line.containsTodo() && line.isComment()) {
-            parseString(line.getText(), file, line.getLineNum());
+            parseString(line.getText(), filePath, line.getLineNum());
         }
     }
 
-    private void closeSection(CommentSection section, File file, long lineNum) {
+    private void closeSection(CommentSection section, String filePath, long lineNum) {
         if(section.containsTodo()) {
             String sectionText = section.getComment();
-            parseString(sectionText, file, lineNum - section.size());
+            parseString(sectionText, filePath, lineNum - section.size());
         }
         section.clear();
     }
 
-    private void addToSection(String line, Line properties, CommentSection section) {
-        if(properties.containsTodo())
-            section.setContainsTodo(true);
-        section.addLine(line);
-    }
-
-    private void parseString(String str, File file, long lineNum) {
+    private void parseString(String str, String filePath, long lineNum) {
 
         String todoText = getTodoText(str);
         if(todoText.isEmpty())
@@ -95,7 +76,7 @@ public class TodoParser {
         String title = getHeaderTitle(header, date, priority.toString());
         String msg = getTodoMsg(lines);
 
-        addEntry(title, msg, date, file.getPath(), lineNum, priority);
+        addEntry(title, msg, date, filePath, lineNum, priority);
     }
 
     private String getTodoText(String str) {
@@ -134,8 +115,8 @@ public class TodoParser {
 
     private String getTodoMsg(String[] lines) {
         StringBuilder msgBuilder = new StringBuilder();
-        for(int i = 1; i < lines.length; i++) {
 
+        for(int i = 1; i < lines.length; i++) {
             String line = lines[i];
 
             if(line.startsWith("*") && line.length() > 2)
@@ -143,9 +124,11 @@ public class TodoParser {
 
             msgBuilder.append(line).append("\n");
         }
+
         return msgBuilder.toString();
     }
 
+    // TODO [2020-11-18]: too many arguments!
     private void addEntry(String title, String msg, String date, String filePath, long lineNum, TodoPriority priority) {
         TodoEntry entry = new TodoEntry(title, msg, filePath, lineNum);
         entry.priority = priority;
@@ -158,7 +141,8 @@ public class TodoParser {
             try {
                 entry.date = LocalDate.parse(date);
             } catch (DateTimeParseException e) {
-                System.err.println("Warning::Could not parse date: " + date + " in file " + filePath + " line " + lineNum);
+                System.err.println("Warning::Could not parse date: " + date
+                        + " in file " + filePath + " line " + lineNum);
             }
         }
     }
